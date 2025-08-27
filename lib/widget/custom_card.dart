@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/screens/gategory_screen.dart';
+import 'package:news_app/screens/category_screen.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard({super.key, required this.title});

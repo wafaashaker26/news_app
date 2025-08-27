@@ -15,14 +15,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<ArticleModel> articles = [];
-  List <CustomCard> list=[
-    CustomCard( title: "Medicine"),
-    CustomCard( title: "Science"),
-    CustomCard( title: "Technology"),
-    CustomCard( title: "Sports"),
+  List<CustomCard> list = [
+    CustomCard(title: "Medicine"),
+    CustomCard(title: "Science"),
+    CustomCard(title: "Technology"),
+    CustomCard(title: "Sports"),
     CustomCard(title: "Gaming"),
     CustomCard(title: "Animals"),
-    CustomCard( title: "plants"),
+    CustomCard(title: "Plants"),
     CustomCard(title: "Art"),
     CustomCard(title: "Food"),
     CustomCard(title: "Fashion"),
@@ -42,7 +42,6 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,10 +51,10 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(35),
+                borderRadius: BorderRadius.circular(100),
                 child: Image.asset(
                   "assets/images/hello.png",
-                  height: MediaQuery.sizeOf(context).height * .30,
+                  height: MediaQuery.sizeOf(context).height * .25,
                 ),
               ),
               const SizedBox(height: 10),
@@ -69,7 +68,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
-                    borderSide: const BorderSide(color: Colors.white60),
                   ),
                 ),
               ),
@@ -78,9 +76,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 45,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) =>list[index],
+                  itemBuilder: (context, index) => list[index],
                   separatorBuilder: (context, index) =>
-                      const SizedBox(width: 5),
+                  const SizedBox(width: 5),
                   itemCount: list.length,
                 ),
               ),
@@ -113,28 +111,34 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
+              const SizedBox(height: 10),
+
               Expanded(
                 child: articles.isEmpty
                     ? const Center(child: CircularProgressIndicator())
                     : ListView.separated(
-                        itemBuilder: (context, index) => CustomRecommended(
-                          title: articles[index].title,
-                          description: articles[index].description,
-                          pathImg: articles[index].urlToImage,
-                          url: '',
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>ArticleDetailsScreen(title: articles[index].title, content: articles[index].content, url: articles[index].url)
-                              ),
-                            );
-                          },
+                  itemBuilder: (context, index) => CustomRecommended(
+                    title: articles[index].title,
+                    description: articles[index].description,
+                    pathImg: articles[index].urlToImage,
+                    url: articles[index].url,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ArticleDetailsScreen(
+                            title: articles[index].title,
+                            content: articles[index].content,
+                            url: articles[index].url,
+                          ),
                         ),
-                        separatorBuilder: (context, index) =>
-                            const SizedBox(height: 7),
-                        itemCount: articles.length,
-                      ),
+                      );
+                    },
+                  ),
+                  separatorBuilder: (context, index) =>
+                  const SizedBox(height: 7),
+                  itemCount: articles.length,
+                ),
               ),
             ],
           ),

@@ -26,15 +26,6 @@ class ArticleDetailsScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // لو عايز تعرض النص من API قبل الـ WebView
-          if (content.isNotEmpty)
-            // Padding(
-            //   padding: const EdgeInsets.all(16.0),
-            //   child: Text(
-            //     content,
-            //     style: const TextStyle(fontSize: 16),
-            //   ),
-            // ),
           Expanded(
             child: WebViewWidget(
               controller: WebViewController()
