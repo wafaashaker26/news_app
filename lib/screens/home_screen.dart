@@ -14,6 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  var searchController=TextEditingController();
   List<ArticleModel> articles = [];
   List<CustomCard> list = [
     CustomCard(title: "Medicine"),
@@ -33,6 +34,11 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     fetchArticles("Random");
+  }
+  @override
+  void dispose(){
+    super.dispose();
+    searchController.dispose();
   }
 
   void fetchArticles(String query) async {
@@ -57,8 +63,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: MediaQuery.sizeOf(context).height * .25,
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 15),
               TextFormField(
+                controller: searchController,
                 keyboardType: TextInputType.text,
                 onFieldSubmitted: (value) {
                   fetchArticles(value);
